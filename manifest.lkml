@@ -1,12 +1,13 @@
 
 ## Connection Constants:
+
 constant: GA4_CONNECTION {
-  value: "looker-demos"
+  value: "cms_medicare_ga4"
   export: override_required
 }
 
 constant: GA4_SCHEMA {
-  value: "adh-demo-data-review.analytics_213025502"
+  value: "steady-cat-772.analytics_266429760"
   export: override_optional
 }
 

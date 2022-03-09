@@ -8,19 +8,19 @@
   "constants": {
     "GA4_CONNECTION": {
       "label": "Connection Name",
-      "value_constraint": "connection"
+      "value_constraint": "cms_medicare_ga4"
     },
     "GA4_SCHEMA": {
-      "label": "GA4 Schema"
+      "label": "steady-cat-772.analytics_266429760"
     },
     "GA4_TABLE_VARIABLE": {
-        "label": "GA4 Table Variable"
+        "label": "events_*"
     }
   },
   "models": [
     {
-      "name": "ga4",
-      "connection_constant": "GA4_CONNECTION"
+      "name": "medicare_ga4_model",
+      "connection_constant": "cms_medicare_ga4"
     }
   ]
 }
