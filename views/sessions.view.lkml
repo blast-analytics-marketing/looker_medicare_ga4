@@ -671,6 +671,34 @@ view: sessions {
     #  sql: IF(${x_days_future_purchases} >0,1,0) ;;
     #}
 
+    dimension_group: partition {
+      # Date that is parsed from the table name. Required as a filter to avoid accidental massive queries
+      label: ""
+      view_label: "Session"
+      description: "Date based on the day the session was added to the database. Matches date in Google Analytics UI, but may not match 'Session Start Date'."
+      type: time
+      timeframes: [
+        date,
+        day_of_week,
+        day_of_week_index,
+        day_of_month,
+        day_of_year,
+        fiscal_quarter,
+        fiscal_quarter_of_year,
+        week,
+        month,
+        month_name,
+        month_num,
+        quarter,
+        quarter_of_year,
+        week_of_year,
+        year
+      ]
+      sql: ${TABLE}.partition_date ;;
+      # can_filter: no
+      convert_tz: no
+    }
+
     dimension: property {
       hidden: no
       suggestions: ["Medicare.gov","Es.Medicare.gov","Healthcare.gov","CuidadoDeSalud.gov","CMS.gov","CMSNationalTrainingProgram.CMS.gov","MyMedicare.gov"]
