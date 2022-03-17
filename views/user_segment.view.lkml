@@ -11,47 +11,47 @@ view: user_segment_filters {
 }
 
 view: user_segment {
-    derived_table: {
-      #https://gafourblock.cloud.looker.com/explore/ga4/sessions?qid=TNJNii9UxKynCJltMZZ0iv&toggle=fil
+  derived_table: {
+    #https://gafourblock.cloud.looker.com/explore/ga4/sessions?qid=TNJNii9UxKynCJltMZZ0iv&toggle=fil
 
-      explore_source: sessions {
-        column: user_pseudo_id {}
-        column: total_sessions {}
-        column: total_purchase_revenue { field: events.total_purchase_revenue }
-        column: total_transactions { field: events.total_transactions }
-        bind_filters: {
-          from_field: user_segment.user_segment_timeframe
-          to_field: sessions.session_date   #bind filters to filter the table when the view is created
-        }
-        bind_filters: {
-          from_field: user_segment.user_segment_landing_page
-          to_field: sessions.landing_page
-        }
-
+    explore_source: sessions {
+      column: user_pseudo_id {}
+      column: total_sessions {}
+      column: total_purchase_revenue { field: events.total_purchase_revenue }
+      column: total_transactions { field: events.total_transactions }
+      bind_filters: {
+        from_field: user_segment.user_segment_timeframe
+        to_field: sessions.session_date   #bind filters to filter the table when the view is created
       }
-    }
-
-    extends: [user_segment_filters]
-
-    dimension: user_pseudo_id {hidden:yes primary_key:yes}
-    dimension: total_sessions {
-      hidden: yes
-      label: "Sessions Sessions"
-      description: "Total Number of Sessions (Count)"
-      #value_format: "[<1000]0;[<1000000]0.0,"K";0.0,,"M""
-      type: number
+      bind_filters: {
+        from_field: user_segment.user_segment_landing_page
+        to_field: sessions.landing_page
       }
-    dimension: total_purchase_revenue {
-      hidden: yes
-      label: "Events Purchase Revenue"
-      value_format: "$#,##0.00"
-      type: number
+
     }
-    dimension: total_transactions {
-      hidden: yes
-      label: "Events Transactions"
-      type: number
-    }
+  }
+
+  extends: [user_segment_filters]
+
+  dimension: user_pseudo_id {hidden:yes primary_key:yes}
+  dimension: total_sessions {
+    hidden: yes
+    label: "Sessions Sessions"
+    description: "Total Number of Sessions (Count)"
+    #value_format: "[<1000]0;[<1000000]0.0,"K";0.0,,"M""
+    type: number
+  }
+  dimension: total_purchase_revenue {
+    hidden: yes
+    label: "Events Purchase Revenue"
+    value_format: "$#,##0.00"
+    type: number
+  }
+  dimension: total_transactions {
+    hidden: yes
+    label: "Events Transactions"
+    type: number
+  }
 
 
   measure: segment_users {

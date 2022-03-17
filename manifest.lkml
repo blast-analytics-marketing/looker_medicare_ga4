@@ -15,3 +15,8 @@ constant: GA4_TABLE_VARIABLE {
   value: "events_*"
   export: override_optional
 }
+
+constant: GA4_PROPERTY {
+  value: "medicare.gov"
+  export: override_optional
+}

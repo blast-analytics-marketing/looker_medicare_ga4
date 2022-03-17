@@ -81,7 +81,7 @@ view: goals {
     hidden: yes
     type: yesno
     sql: {{ event_name_goal_selection._in_query }}
-          OR {{ page_goal_selection._in_query }};;
+      OR {{ page_goal_selection._in_query }};;
   }
 
   dimension: has_completed_goal {
