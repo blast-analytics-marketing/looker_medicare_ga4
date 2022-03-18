@@ -18,8 +18,8 @@ view: custom_homepage_okrs {
     FROM
       `@{GA4_SCHEMA}.@{GA4_TABLE_VARIABLE}` events
     WHERE
-      timestamp(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'[0-9]+'))) >= ((TIMESTAMP_ADD(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY), INTERVAL -731 DAY)))
-      AND event_name = 'page_view'
+      --timestamp(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'[0-9]+'))) >= ((TIMESTAMP_ADD(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY), INTERVAL -731 DAY)))
+      event_name = 'page_view'
     ;;
 
     }
