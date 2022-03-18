@@ -43,8 +43,8 @@ explore: sessions {
   #  sql_on: ${sessions.sl_key} = ${future_purchase_prediction.sl_key} ;;
   #}
 
-  always_filter: {
-      filters: [sessions.partition_date: "7 days ago for 7 days", sessions.property: "Medicare.gov"]
-  }
+  #always_filter: {
+  #    filters: [sessions.partition_date: "7 days ago for 7 days", sessions.property: "Medicare.gov"]
+  #}
 
 }
