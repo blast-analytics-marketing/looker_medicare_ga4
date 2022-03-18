@@ -1,9 +1,9 @@
 view: custom_homepage_okrs {
   derived_table: {
     datagroup_trigger: ga4_default_datagroup
-    partition_keys: ["session_date"]
-    cluster_keys: ["session_date"]
-    increment_key: "session_date"
+    partition_keys: ["event_date"]
+    cluster_keys: ["event_date"]
+    increment_key: "event_date"
     increment_offset: 3
     sql:
     SELECT
