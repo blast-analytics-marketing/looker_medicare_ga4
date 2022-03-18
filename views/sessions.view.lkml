@@ -47,8 +47,8 @@ view: sessions {
             , events.ecommerce
             , events.items
               from `@{GA4_SCHEMA}.@{GA4_TABLE_VARIABLE}` events
-              where 1 = 1
-              -- where timestamp(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'[0-9]+'))) >= ((TIMESTAMP_ADD(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY), INTERVAL -29 DAY)))
+              --where 1 = 1
+              where timestamp(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'[0-9]+'))) >= ((TIMESTAMP_ADD(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY), INTERVAL -31 DAY)))
               --   and  timestamp(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'[0-9]+'))) <= ((TIMESTAMP_ADD(TIMESTAMP_ADD(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY), INTERVAL -29 DAY), INTERVAL 30 DAY)))
         ),
 
@@ -85,28 +85,28 @@ view: sessions {
       device_geo as (
         select sl.sl_key
             ,  sl.device.category device__category
-            ,  sl.device.mobile_brand_name device__mobile_brand_name
-            ,  sl.device.mobile_model_name device__mobile_model_name
-            ,  sl.device.mobile_brand_name||' '||device.mobile_model_name device__mobile_device_info
-            ,  sl.device.mobile_marketing_name device__mobile_marketing_name
-            ,  sl.device.mobile_os_hardware_model device__mobile_os_hardware_model
+            --,  sl.device.mobile_brand_name device__mobile_brand_name
+            --,  sl.device.mobile_model_name device__mobile_model_name
+            --,  sl.device.mobile_brand_name||' '||device.mobile_model_name device__mobile_device_info
+            --,  sl.device.mobile_marketing_name device__mobile_marketing_name
+            --,  sl.device.mobile_os_hardware_model device__mobile_os_hardware_model
             ,  sl.device.operating_system device__operating_system
-            ,  sl.device.operating_system_version device__operating_system_version
-            ,  sl.device.vendor_id device__vendor_id
-            ,  sl.device.advertising_id device__advertising_id
-            ,  sl.device.language device__language
-            ,  sl.device.time_zone_offset_seconds device__time_zone_offset_seconds
-            ,  sl.device.is_limited_ad_tracking device__is_limited_ad_tracking
+            --,  sl.device.operating_system_version device__operating_system_version
+            --,  sl.device.vendor_id device__vendor_id
+            --,  sl.device.advertising_id device__advertising_id
+            --,  sl.device.language device__language
+            --,  sl.device.time_zone_offset_seconds device__time_zone_offset_seconds
+            --,  sl.device.is_limited_ad_tracking device__is_limited_ad_tracking
             ,  sl.device.web_info.browser device__web_info_browser
-            ,  sl.device.web_info.browser_version device__web_info_browser_version
-            ,  sl.device.web_info.hostname device__web_info_hostname
+            --,  sl.device.web_info.browser_version device__web_info_browser_version
+            --,  sl.device.web_info.hostname device__web_info_hostname
             ,  case when sl.device.category = 'mobile' then true else false end as device__is_mobile
-            ,  sl.geo.continent geo__continent
-            ,  sl.geo.country geo__country
-            ,  sl.geo.city geo__city
-            ,  sl.geo.metro geo__metro
-            ,  sl.geo.sub_continent geo__sub_continent
-            ,  sl.geo.region geo__region
+            --,  sl.geo.continent geo__continent
+            --,  sl.geo.country geo__country
+            --,  sl.geo.city geo__city
+            --,  sl.geo.metro geo__metro
+            --,  sl.geo.sub_continent geo__sub_continent
+            --,  sl.geo.region geo__region
         from session_list_with_event_history sl
         where sl.event_name = 'session_start'
         ),
@@ -130,8 +130,8 @@ view: sessions {
                                 , sl.event_params
                                 , sl.event_previous_timestamp
                                 , sl.event_value_in_usd
-                                , sl.event_bundle_sequence_id
-                                , sl.event_server_timestamp_offset
+                                --, sl.event_bundle_sequence_id
+                                --, sl.event_server_timestamp_offset
                                 , sl.user_id
                                 , sl.user_pseudo_id
                                 , sl.user_properties
@@ -170,28 +170,28 @@ view: sessions {
                             ,  sf.session_start
                             ,  sf.session_length_minutes) session_data
           ,  (SELECT AS STRUCT d.device__category
-                            ,  d.device__mobile_brand_name
-                            ,  d.device__mobile_model_name
-                            ,  d.device__mobile_device_info
-                            ,  d.device__mobile_marketing_name
-                            ,  d.device__mobile_os_hardware_model
+                            --,  d.device__mobile_brand_name
+                            --,  d.device__mobile_model_name
+                            --,  d.device__mobile_device_info
+                            --,  d.device__mobile_marketing_name
+                            --,  d.device__mobile_os_hardware_model
                             ,  d.device__operating_system
-                            ,  d.device__operating_system_version
-                            ,  d.device__vendor_id
-                            ,  d.device__advertising_id
-                            ,  d.device__language
-                            ,  d.device__time_zone_offset_seconds
-                            ,  d.device__is_limited_ad_tracking
+                            --,  d.device__operating_system_version
+                            --,  d.device__vendor_id
+                            --,  d.device__advertising_id
+                            --,  d.device__language
+                            --,  d.device__time_zone_offset_seconds
+                            --,  d.device__is_limited_ad_tracking
                             ,  d.device__web_info_browser
-                            ,  d.device__web_info_browser_version
-                            ,  d.device__web_info_hostname
+                            --,  d.device__web_info_browser_version
+                            --,  d.device__web_info_hostname
                             ,  d.device__is_mobile) device_data
-          ,  (SELECT AS STRUCT d.geo__continent
-                            ,  d.geo__country
-                            ,  d.geo__city
-                            ,  d.geo__metro
-                            ,  d.geo__sub_continent
-                            ,  d.geo__region) geo_data
+          --,  (SELECT AS STRUCT d.geo__continent
+                            --,  d.geo__country
+                            --,  d.geo__city
+                            --,  d.geo__metro
+                            --,  d.geo__sub_continent
+                            --,  d.geo__region) geo_data
           ,  se.event_data event_data
       from session_event_packing se
       left join session_tags sa
