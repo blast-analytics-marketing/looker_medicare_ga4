@@ -46,7 +46,7 @@ view: sessions {
             , events.event_dimensions
             , events.ecommerce
             , events.items
-              from `steady-cat-772.analytics_266429760.events_*` events
+              from `@{GA4_SCHEMA}.@{GA4_TABLE_VARIABLE}` events
               where 1 = 1
               -- where timestamp(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'[0-9]+'))) >= ((TIMESTAMP_ADD(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY), INTERVAL -29 DAY)))
               --   and  timestamp(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'[0-9]+'))) <= ((TIMESTAMP_ADD(TIMESTAMP_ADD(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY), INTERVAL -29 DAY), INTERVAL 30 DAY)))
