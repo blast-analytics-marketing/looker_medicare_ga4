@@ -25,8 +25,8 @@ view: custom_homepage_okrs {
     }
 
 ## Dimensions
-    dimension: event_date {
-      type: date
+    dimension_group: event_date {
+      type: time
       sql: ${TABLE}.event_date ;;
     }
 
