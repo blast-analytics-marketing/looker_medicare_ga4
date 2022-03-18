@@ -699,21 +699,21 @@ view: sessions {
     #  convert_tz: no
     #}
 
-    dimension: property {
-      hidden: no
-      suggestions: ["Medicare.gov","Es.Medicare.gov","Healthcare.gov","CuidadoDeSalud.gov","CMS.gov","CMSNationalTrainingProgram.CMS.gov","MyMedicare.gov"]
-      sql: CASE
-           WHEN ${TABLE}.property = "Medicare.gov" THEN "Medicare.gov"
-           WHEN ${TABLE}.property = "Es.Medicare.gov" THEN "Es.Medicare.gov"
-           WHEN ${TABLE}.property = "Healthcare.gov" THEN "Healthcare.gov"
-           WHEN ${TABLE}.property = "CuidadoDeSalud.gov" THEN "CuidadoDeSalud.gov"
-           WHEN ${TABLE}.property = "CMS.gov" THEN "CMS.gov"
-           WHEN ${TABLE}.property = "CMSNationalTrainingProgram.CMS.gov" THEN "CMSNationalTrainingProgram.CMS.gov"
-           WHEN ${TABLE}.property = "MyMedicare.gov" THEN "MyMedicare.gov"
-          ELSE NULL
-         END
-         ;;
-    }
+    #dimension: property {
+    #  hidden: no
+    #  suggestions: ["Medicare.gov","Es.Medicare.gov","Healthcare.gov","CuidadoDeSalud.gov","CMS.gov","CMSNationalTrainingProgram.CMS.gov","MyMedicare.gov"]
+    #  sql: CASE
+    #      WHEN ${TABLE}.property = "Medicare.gov" THEN "Medicare.gov"
+    #       WHEN ${TABLE}.property = "Es.Medicare.gov" THEN "Es.Medicare.gov"
+    #       WHEN ${TABLE}.property = "Healthcare.gov" THEN "Healthcare.gov"
+    #       WHEN ${TABLE}.property = "CuidadoDeSalud.gov" THEN "CuidadoDeSalud.gov"
+    #       WHEN ${TABLE}.property = "CMS.gov" THEN "CMS.gov"
+    #       WHEN ${TABLE}.property = "CMSNationalTrainingProgram.CMS.gov" THEN "CMSNationalTrainingProgram.CMS.gov"
+    #       WHEN ${TABLE}.property = "MyMedicare.gov" THEN "MyMedicare.gov"
+    #      ELSE NULL
+    #     END
+    #     ;;
+    #}
     ## END - GA4 BQML fields ##
 
 ## Measures
