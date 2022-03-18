@@ -20,13 +20,16 @@ view: custom_homepage_okrs {
     WHERE
       --timestamp(PARSE_DATE('%Y%m%d', REGEXP_EXTRACT(_TABLE_SUFFIX,r'[0-9]+'))) >= ((TIMESTAMP_ADD(TIMESTAMP_TRUNC(CURRENT_TIMESTAMP(), DAY), INTERVAL -731 DAY)))
       event_name = 'page_view'
+    GROUP BY
+      1,2,3,4,5,6,7
     ;;
 
     }
 
 ## Dimensions
-    dimension: event_date {
-      type: date
+    dimension_group: event_date {
+      type: time
+      datatype: date
       sql: ${TABLE}.event_date ;;
     }
 
@@ -66,7 +69,7 @@ view: custom_homepage_okrs {
       label: "User Events"
       description: "Total Number of User Events"
       type: number
-      sql: ${TABLE}.user_pseudo_id ;;
+      sql: count(${TABLE}.user_pseudo_id) ;;
       value_format_name: formatted_number
     }
 
