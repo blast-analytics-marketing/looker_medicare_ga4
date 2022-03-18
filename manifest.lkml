@@ -9,7 +9,7 @@ constant: GA4_CONNECTION {
 
 constant: GA4_SCHEMA {
   #value: "steady-cat-772.analytics_266429760"
-  value: "exaulted-etching-538.analytics_206819186"
+  value: "exalted-etching-538.analytics_206819186"
   export: override_optional
 }
 
