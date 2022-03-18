@@ -1,10 +1,10 @@
 view: custom_homepage_okrs {
   derived_table: {
     datagroup_trigger: ga4_default_datagroup
-    partition_keys: ["event_date"]
-    cluster_keys: ["event_date"]
-    increment_key: "event_date"
-    increment_offset: 3
+    #partition_keys: ["event_date"]
+    #cluster_keys: ["event_date"]
+    #increment_key: "event_date"
+    #increment_offset: 3
     sql:
     SELECT
       event_date,
