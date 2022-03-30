@@ -1,4 +1,4 @@
-view: custom_homepage_okrs {
+view: dev_homepage_okrs {
   derived_table: {
     datagroup_trigger: ga4_default_datagroup
     #partition_keys: ["event_date"]
