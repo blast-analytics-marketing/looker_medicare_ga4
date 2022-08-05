@@ -1,6 +1,7 @@
 view: custom_medicare_okrs {
   derived_table: {
-    datagroup_trigger: ga4_default_datagroup
+    datagroup_trigger: none
+    #datagroup_trigger: ga4_default_datagroup
     partition_keys: ["session_date"]
     cluster_keys: ["session_date"]
     increment_key: "session_date"
